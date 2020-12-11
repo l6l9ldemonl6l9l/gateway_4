@@ -1,0 +1,44 @@
+syntax = "proto3";
+package com.example.FairyAnimal;
+option java_multiple_files = true;
+
+message FairyAnimalResponse {
+  string id = 1;
+  string name = 2;
+  int32  energy = 3;
+  int32  sizeMind =4;
+}
+
+message FairyAnimalRequest {
+  string name = 2;
+  int32  energy = 3;
+  int32  sizeMind =4;
+}
+
+message AllFairyAnimalRequest {
+
+}
+
+message AllFairyAnimalResponse {
+  repeated FairyAnimalResponse FairyAnimal = 1;
+}
+
+message FairyAnimalByIdRequest {
+  string id = 1;
+}
+
+message FairyAnimalByNameRequest {
+  string name = 1;
+}
+
+message DeleteFairyAnimalResponse {
+
+}
+
+service FairyAnimalService {
+  rpc all(AllFairyAnimalRequest) returns (AllFairyAnimalResponse);
+  rpc add(FairyAnimalRequest) returns (FairyAnimalResponse);
+  rpc byId(FairyAnimalByIdRequest) returns (FairyAnimalResponse);
+  rpc byName(FairyAnimalByNameRequest) returns (FairyAnimalResponse);
+  rpc delete (FairyAnimalByIdRequest) returns (DeleteFairyAnimalResponse);
+}

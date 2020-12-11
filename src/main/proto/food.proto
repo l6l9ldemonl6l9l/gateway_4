@@ -1,0 +1,43 @@
+syntax = "proto3";
+package com.example.Food;
+option java_multiple_files = true;
+
+message FoodResponse {
+  string id = 1;
+  int32  taste = 2;
+  string kindFood = 3;
+}
+
+message FoodRequest {
+  int32  taste = 2;
+  string kindFood = 3;
+}
+
+message AllFoodRequest {
+
+}
+
+message AllFoodResponse {
+  repeated FoodResponse Food = 1;
+}
+
+message FoodByIdRequest {
+  string id = 1;
+}
+
+message FoodByNameRequest {
+  string kindFood = 1;
+}
+
+message DeleteFoodResponse {
+
+}
+
+service FoodService {
+  rpc all(AllFoodRequest) returns (AllFoodResponse);
+  rpc add(FoodRequest) returns (FoodResponse);
+  rpc byId(FoodByIdRequest) returns (FoodResponse);
+  rpc byName(FoodByNameRequest) returns (FoodResponse);
+  rpc delete (FoodByIdRequest) returns (DeleteFoodResponse);
+}
+

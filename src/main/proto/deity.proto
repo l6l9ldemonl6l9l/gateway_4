@@ -1,0 +1,42 @@
+syntax = "proto3";
+package com.example.Deity;
+option java_multiple_files = true;
+
+message DeityResponse {
+  string id = 1;
+  int32  age = 2;
+  string name = 3;
+}
+
+message DeityRequest {
+  int32  age = 2;
+  string name = 3;
+}
+
+message AllDeityRequest {
+
+}
+
+message AllDeityResponse {
+  repeated DeityResponse Deity = 1;
+}
+
+message DeityByIdRequest {
+  string id = 1;
+}
+
+message DeityByNameRequest {
+  string name = 1;
+}
+
+message DeleteDeityResponse {
+
+}
+
+service DeityService {
+  rpc all(AllDeityRequest) returns (AllDeityResponse);
+  rpc add(DeityRequest) returns (DeityResponse);
+  rpc byId(DeityByIdRequest) returns (DeityResponse);
+  rpc byName(DeityByNameRequest) returns (DeityResponse);
+  rpc delete (DeityByIdRequest) returns (DeleteDeityResponse);
+}
